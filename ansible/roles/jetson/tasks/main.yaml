@@ -51,6 +51,10 @@
       - wpasupplicant
       - python-pip
       - python3-pip
+      - nano
+      - tmux
+      - ncdu
+      - htop
 
 
 - name: Install Nvidia Deps
