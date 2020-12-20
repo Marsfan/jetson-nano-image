@@ -117,6 +117,24 @@ Congratulations 🎉 Now you can boot your board with the new image !
 
 To install nvidia libraries (cuda, libcudnn, tensorRT …) you need to use [nvidia sdk manager](https://developer.nvidia.com/nvidia-sdk-manager).
 
+_note: To get the SDK manager working on Ubuntu 20.04, do the following (from[this gist](https://gist.github.com/Lauszus/28f546d4f30ce5103b49a7550f3e4975))_
+
+```bash
+# Put in "/usr/lib/os-release-bionic"
+NAME="Ubuntu"
+VERSION="18.04 (Bionic Beaver)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 18.04"
+VERSION_ID="18.04"
+VERSION_CODENAME=bionic
+UBUNTU_CODENAME=bionic
+
+# Now launch the sdkmanager:
+# $ export LSB_OS_RELEASE=/usr/lib/os-release-bionic
+# $ sdkmanager
+```
+
 ## Result
 
 With the new image only 200MB of RAM is used, which leaves you with 3.8 GB for your projects !
