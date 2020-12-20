@@ -1,10 +1,10 @@
-
-
-# Create your own image for jetson nano board 
+# Create your own image for jetson nano board
 
 ## Introduction
 
-_Note: This guide is copied from https://pythops.com/post/create-your-own-image-for-jetson-nano-board so that it is still readable in the even that site goes down. I made a few minor alterations to the guide to make it fit my purposes better, and to display in markdown better. 
+\_Note: This guide is copied from [https://pythops.com/post/create-your-own-image-for-jetson-nano-board](https://pythops.com/post/create-your-own-image-for-jetson-nano-board) so that it is still readable in the event that site goes down.
+I made a few minor alterations to the guide to make it display right in markdown, and to fix some issues I had with the
+guide.
 
 This article will guide you step by step to create a minimalist Ubuntu based image for your NVIDIA Jetson nano board that best suits your project.
 
@@ -17,7 +17,7 @@ So, let's create a clean and minimalist image.
 
 Before starting, let's first clone the repository where I put all the needed scripts.
 
-```
+```bash
 $ git clone https://github.com/pythops/jetson-nano-image
 $ cd jetson-nano-image
 ```
@@ -26,11 +26,14 @@ $ cd jetson-nano-image
 
 We're gonna use the script `create-rootfs.sh` to create a basic rootfs.
 First, we define the location where we want to build it. This is done by defining the environment variable `$JETSON_ROOTFS_DIR`. The path will be created if it does not exit.
-```
+
+```bash
 $ export JETSON_ROOTFS_DIR=/path/to/rootfs
 ```
+
 Then we build the rootfs by running the following command
-```
+
+```bash
 $ sudo -E ./create-rootfs.sh
 ROOTFS_DIR: ~/jetson-rootfs
 Installing the dependencies...  [OK]
@@ -54,9 +57,9 @@ $ sudo apt install ansible
 
 This Ansible role is going to do 3 things:
 
-* Install some basic tools (ssh, systemd, sudo …)
-* Setup basic configurations (locales, network …)
-* Add new user: pythops
+- Install some basic tools (ssh, systemd, sudo …)
+- Setup basic configurations (locales, network …)
+- Add new user: pythops
 
 You can run the playbook as follows
 
@@ -117,4 +120,3 @@ To install nvidia libraries (cuda, libcudnn, tensorRT …) you need to use [nvid
 ## Result
 
 With the new image only 200MB of RAM is used, which leaves you with 3.8 GB for your projects !
-
