@@ -75,6 +75,10 @@ Feel free to adapt this role to your needs.
 Now that we customized the rootfs, we're gonna use the script `create-image.sh` to create our final image.
 We need to define a build directory using the environment variable `$JETSON_BUILD_DIR`. This path will be created if it does not exist.
 
+Because nvidia is a pain in the rear, you can no longer use wget to download the L4T data files. 
+instead, you must download the most recent L4T image and place it in the top level directory and pass the file 
+in as the first arguemnt in create-image.sh
+
 ```bash
 $ export JETSON_BUILD_DIR=/path/to/build_dir
 ```
@@ -82,8 +86,9 @@ $ export JETSON_BUILD_DIR=/path/to/build_dir
 Then we build the image as follows
 
 ```bash
-$ sudo -E ./create-image.sh
+$ sudo -E ./create-image.sh filename
 ```
+_note: filename is the .tbz2 file with the L4T images._ 
 
 If all goes well, you'll get this message at the end
 
