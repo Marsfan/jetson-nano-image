@@ -1,4 +1,5 @@
 ---
+
 - name: setup dns
   template:
     src: etc/resolv.conf
@@ -22,35 +23,34 @@
 
 - name: Install packages
   apt:
-    name: "{{ item }}"
-  loop:
-    - bash-completion
-    - build-essential
-    - btrfs-tools
-    - cmake
-    - curl
-    - dnsutils
-    - htop
-    - iotop
-    - isc-dhcp-client
-    - iputils-ping
-    - kmod
-    - linux-firmware
-    - locales
-    - net-tools
-    - netplan.io
-    - pciutils
-    - python3-dev
-    - ssh
-    - sudo
-    - systemd
-    - udev
-    - unzip
-    - usbutils
-    - vim
-    - wpasupplicant
-    - python-pip
-    - python3-pip
+    name:
+      - bash-completion
+      - build-essential
+      - btrfs-tools
+      - cmake
+      - curl
+      - dnsutils
+      - htop
+      - iotop
+      - isc-dhcp-client
+      - iputils-ping
+      - kmod
+      - linux-firmware
+      - locales
+      - net-tools
+      - netplan.io
+      - pciutils
+      - python3-dev
+      - ssh
+      - sudo
+      - systemd
+      - udev
+      - unzip
+      - usbutils
+      - vim
+      - wpasupplicant
+      - python-pip
+      - python3-pip
 
 - name: Generate locales
   locale_gen:
