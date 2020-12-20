@@ -6,7 +6,7 @@
 
 set -e
 
-BSP=https://developer.nvidia.com/embedded/L4T/r32_Release_v4.4/r32_Release_v4.4-GMC3/T210/Tegra210_Linux_R32.4.4_aarch64.tbz2
+
 
 # Check if the user is not root
 if [ "x$(whoami)" != "xroot" ]; then
@@ -33,8 +33,8 @@ mkdir -p $JETSON_BUILD_DIR
 
 # Download L4T
 if [ ! "$(ls -A $JETSON_BUILD_DIR)" ]; then
-        printf "\e[32mDownload L4T...       "
-        wget -qO- $BSP | tar -jxpf - -C $JETSON_BUILD_DIR
+        printf "\e[32mUnpack L4T...       "
+        tar -jxpf $1 -C $JETSON_BUILD_DIR
 	rm $JETSON_BUILD_DIR/Linux_for_Tegra/rootfs/README.txt
         printf "[OK]\n"
 fi
