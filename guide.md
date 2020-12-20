@@ -6,7 +6,11 @@
 I made a few minor alterations to the guide to make it display right in markdown, and to fix some issues I had with the
 guide.
 
+
 This article will guide you step by step to create a minimalist Ubuntu based image for your NVIDIA Jetson nano board that best suits your project.
+
+_Note: The files in this repository are currently optimized for L4T R32.4.4 on the Jetson Nano 2GB. Getting them to work on 
+other versions of L4T will likely require fiddling._
 
 ## Why would you build an image from scratch instead of using the official one ?
 
@@ -79,6 +83,7 @@ Because nvidia is a pain in the rear, you can no longer use wget to download the
 instead, you must download the most recent L4T image and place it in the top level directory and pass the file 
 in as the first arguemnt in create-image.sh
 
+
 ```bash
 $ export JETSON_BUILD_DIR=/path/to/build_dir
 ```
@@ -96,6 +101,13 @@ If all goes well, you'll get this message at the end
 Image created successfully
 Image location: /path/to/jetson.img
 ```
+
+_note: If you get errors about unmet dependencies, add them to `ansible/roles/jetson/tasks/main.yml`
+under both the `Install Nvidia deps` task and the `Mark Nvidia deps` task, 
+then go back to [Customize](##Customize) and resume from there.
+
+_note: `apt-mark` is not strictly necessary, but without it, any package dependenceies 
+that later become unneeded will not be removed by `apt-get autoremove`_
 
 ## Flash on the sdcard
 
@@ -122,7 +134,7 @@ Congratulations 🎉 Now you can boot your board with the new image !
 
 To install nvidia libraries (cuda, libcudnn, tensorRT …) you need to use [nvidia sdk manager](https://developer.nvidia.com/nvidia-sdk-manager).
 
-_note: To get the SDK manager working on Ubuntu 20.04, do the following (from[this gist](https://gist.github.com/Lauszus/28f546d4f30ce5103b49a7550f3e4975))_
+_note: To get the SDK manager working on Ubuntu 20.04, do the following (from [this gist](https://gist.github.com/Lauszus/28f546d4f30ce5103b49a7550f3e4975))_
 
 ```bash
 # Put in "/usr/lib/os-release-bionic"
@@ -142,4 +154,4 @@ UBUNTU_CODENAME=bionic
 
 ## Result
 
-With the new image only 200MB of RAM is used, which leaves you with 3.8 GB for your projects !
+The new image is much smaller, and uses a lot less RAM, as it is not running a GUI.
