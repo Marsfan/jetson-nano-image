@@ -21,6 +21,11 @@
     upgrade: dist
     update_cache: yes
 
+- name: Install man-db
+  apt:
+    name: 
+      - man-db
+
 - name: Install packages
   apt:
     name:
@@ -55,6 +60,10 @@
       - tmux
       - ncdu
       - htop
+      - dialog
+      - resolvconf
+
+      
 
 
 - name: Install Nvidia Deps
@@ -83,6 +92,8 @@
       - libwayland-egl1
       - libxkbcommon0
       - libxrender1
+
+      
       
 - name: Mark Nvidia Deps
   shell: "apt-mark auto device-tree-compiler libasound2 libcairo2 libdatrie1 libevdev2 libfontconfig1 libgles2 libgstreamer-plugins-bad1.0-0 libgstreamer-plugins-base1.0-0 libgstreamer1.0-0 libharfbuzz0b libinput10 libjpeg-turbo8 libpango-1.0-0 libpangocairo-1.0-0 libpangoft2-1.0-0 libpixman-1-0 libpng16-16 libunwind8 libwayland-cursor0 libwayland-egl1 libxkbcommon0 libxrender1"
@@ -107,6 +118,14 @@
     owner: root
     group: root
     mode: 0644
+
+# This will get all the documentation and such properly set up
+- name: Unminimize the system (this will take a while, as it re-installs all packages)
+  expect: 
+    command: unminimize
+    responses: 
+      - "Would you like to continue\? \[Y\/n\]": "y"
+      - "Do you want to continue\? \[Y\/n\]": "y"
 
 - name: Create new user
   user:
